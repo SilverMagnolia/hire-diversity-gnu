@@ -3,7 +3,7 @@
 
 if(!isset($_SERVER["HTTPS"])) {
 
-	header('Location: https://www.hirediversity.kr');
+	// header('Location: https://www.hirediversity.kr');
 
 }
 
