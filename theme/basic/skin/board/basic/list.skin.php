@@ -135,7 +135,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                 <label for="chk_wr_id_<?php echo $i ?>" class="sound_only"><?php echo $list[$i]['subject'] ?></label>
                 <input type="checkbox" name="chk_wr_id[]" value="<?php echo $list[$i]['wr_id'] ?>" id="chk_wr_id_<?php echo $i ?>">
             </td>
-
             <?php } ?>
             <td class="td_num2"><?php echo $list[$i]['subject_head'] ?></td>
             
@@ -174,6 +173,15 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <?php if ($is_good) { ?><td class="td_num"><?php echo $list[$i]['wr_good'] ?></td><?php } ?>
             <?php if ($is_nogood) { ?><td class="td_num"><?php echo $list[$i]['wr_nogood'] ?></td><?php } ?>
             <td class="td_datetime"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $list[$i]['datetime2'] ?></td>
+
+            <td>
+                <?php if($list[$i]['deadline'] == null) { ?>
+                    <label>마감일 없음</label>
+                <?php } else { ?>
+                    <label> <?php echo $list[$i]['deadline'] ?> </label>
+                <?php } ?>
+            </td>
+
         </tr>
         <?php } ?>
         <?php echo $no_list; // No posts ?>
