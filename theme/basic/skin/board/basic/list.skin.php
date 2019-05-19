@@ -119,8 +119,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <?php if ($is_good) { ?><th scope="col"><?php echo $good_sort_link ?><?php e__('Good'); ?></a></th><?php } ?>
             <?php if ($is_nogood) { ?><th scope="col"><?php echo $nogood_sort_link ?><?php e__('Bad'); ?></a></th><?php } ?>
             <th scope="col"><?php echo $datetime_sort_link ?><?php e__('Date'); ?></a></th>
+
+            <!-- if board['activate_deadline'] is true, add deadline column. -->
+            <?php if ($board['activate_deadline']){ ?>
+                <th scope="col"><?php e__('deadline'); ?></th>
+            <?php } ?>
         </tr>
         </thead>
+
         <tbody>
         <?php for ($i=0; $i<count($list); $i++) { ?>
         <tr class="<?php echo $list[$i]['notice_class'] ?>">
@@ -129,6 +135,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                 <label for="chk_wr_id_<?php echo $i ?>" class="sound_only"><?php echo $list[$i]['subject'] ?></label>
                 <input type="checkbox" name="chk_wr_id[]" value="<?php echo $list[$i]['wr_id'] ?>" id="chk_wr_id_<?php echo $i ?>">
             </td>
+
             <?php } ?>
             <td class="td_num2"><?php echo $list[$i]['subject_head'] ?></td>
             
@@ -138,6 +145,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                 <a href="<?php echo $list[$i]['ca_name_href'] ?>" class="bo_cate_link"><?php echo $list[$i]['ca_name'] ?></a>
                 <?php } ?>
 			</td>
+
             <?php } ?>
 
             <td class="td_subject" style="<?php echo $list[$i]['td_style'] ?>">
@@ -174,6 +182,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     </div>
 
     <?php if ($list_href || $is_admin || $write_href) { ?>
+
     <div class="bo_fx">
         <?php if ($list_href || $write_href) { ?>
         <ul class="btn_bo_user_btm">
@@ -181,12 +190,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <li><button type="submit" name="btn_submit" value="delete_selection" onclick="document.pressed=this.value" class="btn btn_b01"><?php e__('Delete Selection'); ?></button></li>
             <li><button type="submit" name="btn_submit" value="copy_selection" onclick="document.pressed=this.value" class="btn btn_b01"><?php e__('Copy Selection'); ?></button></li>
             <li><button type="submit" name="btn_submit" value="move_selection" onclick="document.pressed=this.value" class="btn btn_b01"><?php e__('Move Selection'); ?></button></li>
+
             <?php } ?>
             <?php if ($list_href) { ?><li class="btn_align_right"><a href="<?php echo $list_href ?>" class="btn_b01 btn"><?php e__('List'); ?></a></li><?php } ?>
             <?php if ($write_href) { ?><li class="btn_align_right"><a href="<?php echo $write_href ?>" class="btn_b02 btn"><?php e__('Write'); ?></a></li><?php } ?>
         </ul>
         <?php } ?>
     </div>
+
     <?php } ?>
     </form>
 </div>
