@@ -1,0 +1,74 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: SIR\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-02-22T14:09:54+09:00\n"
+"PO-Revision-Date: 2019-02-22T14:09:54+09:00\n"
+"Language: en_US\n"
+"X-Poedit-KeywordsList: e__;__;p__:1,2c;ep__:1,2c;n__:1,2\n"
+"X-Domain: default\n"
+
+msgid "Member Login"
+msgstr ""
+
+msgid "Member ID"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Register"
+msgstr ""
+
+msgid "Find Account"
+msgstr ""
+
+msgid "Auto_login"
+msgstr ""
+
+msgid "If you use auto login, you will not have to enter your member ID and password from now on."
+msgstr ""
+
+msgid "Please refrain from using personal information in public places."
+msgstr ""
+
+msgid "Do you want to use auto login?"
+msgstr ""
+
+msgid "My profile"
+msgstr ""
+
+msgid "Edit profile"
+msgstr ""
+
+msgid "Alarm"
+msgstr ""
+
+msgid "Admin"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "Point"
+msgstr ""
+
+msgid "Unread"
+msgstr ""
+
+msgid "Memo"
+msgstr ""
+
+msgid "Scrap"
+msgstr "Saver JD"
+
+msgid "Are you sure you want to leave the membership?"
+msgstr ""

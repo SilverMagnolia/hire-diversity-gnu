@@ -1,0 +1,267 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: SIR\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-02-22T14:06:20+09:00\n"
+"PO-Revision-Date: 2019-02-22T14:06:20+09:00\n"
+"Language: en_US\n"
+"X-Poedit-KeywordsList: e__;__;p__:1,2c;ep__:1,2c;n__:1,2\n"
+"X-Domain: default\n"
+
+msgid "Notice"
+msgstr ""
+
+msgid "Reading"
+msgstr ""
+
+msgid "No posts found."
+msgstr ""
+
+msgid "%s total"
+msgid_plural "%s totals"
+msgstr[0] ""
+
+msgid "%s page"
+msgid_plural "%s pages"
+msgstr[0] ""
+
+msgid "Category"
+msgstr ""
+
+msgid "Search for posts"
+msgstr ""
+
+msgid "Search target"
+msgstr ""
+
+msgid "Search term"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Enter search term"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Admin"
+msgstr ""
+
+msgid "Write"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "All current page posts"
+msgstr ""
+
+msgctxt "Number"
+msgid "Num"
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+msgid "Writer"
+msgstr ""
+
+msgid "hits"
+msgstr ""
+
+msgid "Good"
+msgstr ""
+
+msgid "Bad"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "Comments"
+msgstr ""
+
+msgid "Count"
+msgstr ""
+
+msgid "Delete Selection"
+msgstr ""
+
+msgid "Copy Selection"
+msgstr ""
+
+msgid "Move Selection"
+msgstr ""
+
+msgid "If you are not using JavaScript, please be careful because you can delete the selection immediately without a separate verification process."
+msgstr ""
+
+msgid "Select a Category"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Homepage"
+msgstr ""
+
+msgid "Option"
+msgstr ""
+
+msgid "Temporary stored posts"
+msgstr ""
+
+msgid "Temporary list of saved posts"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "This bulletin board can be written at least <strong>%s</strong> characters or up to <strong>%s</strong> characters."
+msgstr ""
+
+msgid "Length"
+msgstr ""
+
+msgid "Link #"
+msgstr ""
+
+msgid "Please enter a link."
+msgstr ""
+
+msgid "File #"
+msgstr ""
+
+msgid "File Attachment %s : Upload capacity less than %s"
+msgstr ""
+
+msgid "Enter file description."
+msgstr ""
+
+msgid "Delete File"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "List of comments"
+msgstr ""
+
+msgid "Comment on comments by %s"
+msgstr ""
+
+msgid "Comment by %s"
+msgstr ""
+
+msgid "IP"
+msgstr ""
+
+msgid "Secret"
+msgstr ""
+
+msgid "Comment Option Button"
+msgstr ""
+
+msgid "Reply"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Copy URL"
+msgstr ""
+
+msgid "Writing comments"
+msgstr ""
+
+msgid "length"
+msgstr ""
+
+msgid "Enter comments"
+msgstr ""
+
+msgid "Write SNS at the same"
+msgstr ""
+
+msgid "Use Secret"
+msgstr ""
+
+msgid "Add comment"
+msgstr ""
+
+msgid "Page Info"
+msgstr ""
+
+msgid "Hit"
+msgstr ""
+
+msgid "%s Hit"
+msgid_plural "%s Hits"
+msgstr[0] ""
+
+msgid "Comment"
+msgstr ""
+
+msgid "%s Comment"
+msgid_plural "%s Comments"
+msgstr[0] ""
+
+msgid "Copy Post"
+msgstr ""
+
+msgid "Scrap"
+msgstr "Save JD"
+
+msgid "Write Option Button"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Attached file"
+msgstr ""
+
+msgid "%s download"
+msgid_plural "%s downloads"
+msgstr[0] ""
+
+msgid "Related Links"
+msgstr ""
+
+msgid "%s hit"
+msgid_plural "%s hits"
+msgstr[0] ""
+
+msgid "Prev"
+msgstr ""
+
+msgid "Next"
+msgstr ""

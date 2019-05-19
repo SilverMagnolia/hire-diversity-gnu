@@ -1,0 +1,525 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: SIR\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-02-22T14:07:55+09:00\n"
+"PO-Revision-Date: 2019-02-22T14:07:55+09:00\n"
+"Language: en_US\n"
+"X-Poedit-KeywordsList: e__;__;p__:1,2c;ep__:1,2c;n__:1,2\n"
+"X-Domain: default\n"
+
+msgid "Member Login"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "ID"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Autologin"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Register"
+msgstr ""
+
+msgid "Find ID and Password"
+msgstr ""
+
+msgid "If you use auto login, you will not have to enter your member ID and password from now on."
+msgstr ""
+
+msgid "Please refrain from using personal information in public places."
+msgstr ""
+
+msgid "Do you want to use auto login?"
+msgstr ""
+
+msgid "Send Memo"
+msgstr ""
+
+msgid "Received Memo"
+msgstr ""
+
+msgid "Write Memo"
+msgstr ""
+
+msgid "Receiving Member ID"
+msgstr ""
+
+msgid "Enter Member Nickname"
+msgstr ""
+
+msgid "Separate multiple members by comma (,)."
+msgstr ""
+
+msgid "When sending a note, deduct %s points per member."
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Captcha"
+msgstr ""
+
+msgid "Close Window"
+msgstr ""
+
+msgid "Send"
+msgstr ""
+
+msgid "MY Point"
+msgstr ""
+
+msgid "Subtotal"
+msgstr ""
+
+msgid "Sent"
+msgstr ""
+
+msgid "Received"
+msgstr ""
+
+msgid "Sent Memo"
+msgstr ""
+
+msgid "Memo Content"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Prev"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "Reply"
+msgstr ""
+
+msgid "Close window"
+msgstr ""
+
+msgid "Delete Comment"
+msgstr ""
+
+msgid "Delete Post"
+msgstr ""
+
+msgid "Only the author can modify the post."
+msgstr ""
+
+msgid "If you are the author, you can modify the text by entering the password you entered at the time of writing."
+msgstr ""
+
+msgid "If you are the author, you can delete the post by entering the password you entered at the time of writing."
+msgstr ""
+
+msgid "This is a secret post."
+msgstr ""
+
+msgid "Only authors and administrators can access it."
+msgstr ""
+
+msgid "If you are, please enter your password."
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "No notices found"
+msgstr ""
+
+msgid "Remove notifications"
+msgstr ""
+
+msgid "%s day"
+msgid_plural "%s days"
+msgstr[0] ""
+
+msgid "Notice list"
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "Cases"
+msgstr ""
+
+msgid "Select All"
+msgstr ""
+
+msgid "Delete Selection"
+msgstr ""
+
+msgid "Mark as read"
+msgstr ""
+
+msgid "Delete all notice"
+msgstr ""
+
+msgid "View all"
+msgstr ""
+
+msgid "Readed"
+msgstr ""
+
+msgid "Unreaded"
+msgstr ""
+
+msgid "Select notice"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Please select at least one item to %s."
+msgstr ""
+
+msgid "Are you sure you want to delete it?"
+msgstr ""
+
+msgid "Once deleted, the data can not be recovered."
+msgstr ""
+
+msgid "Find member info"
+msgstr ""
+
+msgid "Please enter the registered email address when signing up."
+msgstr ""
+
+msgid "We will send you ID and password information by email."
+msgstr ""
+
+msgid "E-mail address"
+msgstr ""
+
+msgid "<strong>Sign up</strong> is complete."
+msgstr ""
+
+msgid "Congratulations on %s\\'s Sign up."
+msgstr ""
+
+msgid "A verification email has been sent to the email address entered at the time of membership registration."
+msgstr ""
+
+msgid "After checking the sent authentication mail, you can use the site smoothly."
+msgstr ""
+
+msgid "If you have entered an e-mail address incorrectly, please contact your site administrator."
+msgstr ""
+
+msgid "Please be assured that your password is stored in an encryption code that no one knows about."
+msgstr ""
+
+msgid "If you lose your ID and password, you can find them using the email address you entered when Sign up."
+msgstr ""
+
+msgid "You can leave membership at any time and your information is deleted after a certain period of time."
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "Go to Main"
+msgstr ""
+
+msgid "%s total memo received"
+msgid_plural "%s totals memo received"
+msgstr[0] ""
+
+msgid "%s total memo sent"
+msgid_plural "%s totals memo sent"
+msgstr[0] ""
+
+msgid "Readed Memo"
+msgstr ""
+
+msgid "Unreaded Memo"
+msgstr ""
+
+msgid "No Memos."
+msgstr ""
+
+msgid "The maximum number of days to keep Memos is <strong>%s</strong> days."
+msgstr ""
+
+msgid "Terms of Membership"
+msgstr ""
+
+msgid "Sign Up"
+msgstr ""
+
+msgctxt "Sign Up Complete"
+msgid "Complete"
+msgstr ""
+
+msgid "You must agree to the terms and conditions of membership and the information processing policy guidelines before you can sign up."
+msgstr ""
+
+msgid "I agree to the terms and conditions of membership."
+msgstr ""
+
+msgid "Privacy Policy Guide"
+msgstr ""
+
+msgid "Purpose"
+msgstr ""
+
+msgid "Article"
+msgstr ""
+
+msgid "Retention period"
+msgstr ""
+
+msgid "Identify user and verify identity"
+msgstr ""
+
+msgid "ID, name and password"
+msgstr ""
+
+msgid "Until member withdrawal"
+msgstr ""
+
+msgid "Notice of use of customer service"
+msgstr ""
+
+msgid "Identify users to respond to CS"
+msgstr ""
+
+msgid "Contacts (e-mail, mobile phone number)"
+msgstr ""
+
+msgid "I agree with the information handling policy guidelines."
+msgstr ""
+
+msgid "You must agree to the terms and conditions of your membership before you can sign up."
+msgstr ""
+
+msgid "You must agree to the information handling policy guidelines before you can sign up."
+msgstr ""
+
+msgid "Send an email to %s"
+msgstr ""
+
+msgid "Writing mail"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "E-mail"
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "The attached file"
+msgstr ""
+
+msgid "Please check if the file is attached after you send it."
+msgstr ""
+
+msgid "Send Mail"
+msgstr ""
+
+msgid "The attachment takes a long time to transfer."
+msgstr ""
+
+msgid "Do not close or refresh the window before sending mail is complete."
+msgstr ""
+
+msgid "You must authenticate again if you change your e-mail address."
+msgstr ""
+
+msgid "Sign up for membership only after checking the contents sent through e-mail."
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Edit profile"
+msgstr ""
+
+msgid "Enter ID and Password"
+msgstr ""
+
+msgid "You can enter only alphabet, numbers, and _. Please enter at least 3 characters."
+msgstr ""
+
+msgid "Confirm Password"
+msgstr ""
+
+msgid "Enter member profile"
+msgstr ""
+
+msgid "Nickname"
+msgstr ""
+
+msgid "Enter only letters and numbers without spaces"
+msgstr ""
+
+msgid "If you change your nickname, you can not change it within the next %s days."
+msgstr ""
+
+msgid "Homepage"
+msgstr ""
+
+msgid "Phone Number"
+msgstr ""
+
+msgid "Mobile Number"
+msgstr ""
+
+msgid "Etc profile"
+msgstr ""
+
+msgid "Signature"
+msgstr ""
+
+msgid "Introduce Myself"
+msgstr ""
+
+msgid "Member icon"
+msgstr ""
+
+msgid "Image size should be %s pixels width and %s pixels height."
+msgstr ""
+
+msgid "Only gif, jpg, png files are allowed. Only %s bytes or less are registered."
+msgstr ""
+
+msgid "Member image"
+msgstr ""
+
+msgid "Mailing service"
+msgstr ""
+
+msgid "I\\'ll get an information mail."
+msgstr ""
+
+msgid "SMS receiving status"
+msgstr ""
+
+msgid "I\\'ll get a message on my phone."
+msgstr ""
+
+msgid "Open Profile"
+msgstr ""
+
+msgid "Let others see my information."
+msgstr ""
+
+msgid "If you change the Open Profile, you will not be able to change it within the next %s days."
+msgstr ""
+
+msgid "Open Profile must not changed until %s, within %s days after modification."
+msgstr ""
+
+msgid "This is to prevent you from receiving a note after you send it due to frequent information disclosure corrections."
+msgstr ""
+
+msgid "Recommendation ID"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Please set the mobile phone identification settings in the basic configuration."
+msgstr ""
+
+msgid "Please enter at least 3 characters in your password."
+msgstr ""
+
+msgid "The password is not the same."
+msgstr ""
+
+msgid "Please enter a name."
+msgstr ""
+
+msgid "You need to confirm your identity to sign up for membership."
+msgstr ""
+
+msgid "Member icon is not an image file."
+msgstr ""
+
+msgid "Member image is not an image file."
+msgstr ""
+
+msgid "You can not recommend yourself."
+msgstr ""
+
+msgid "Scrap"
+msgstr "Save JD"
+
+msgid "Check Subject and Write Comment"
+msgstr ""
+
+msgid "Write comments"
+msgstr ""
+
+msgid "You can clip and leave a comment of appreciation or encouragement."
+msgstr ""
+
+msgid "Confirm scrap"
+msgstr "Confirm Save JD"
+
+msgid "No Data"
+msgstr ""
+
+msgid "Days"
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "%s\\'s profile"
+msgstr ""
+
+msgid "Member Level"
+msgstr ""
+
+msgid "Point"
+msgstr ""
+
+msgid "Register Date"
+msgstr ""
+
+msgid "Last login date"
+msgstr ""
+
+msgid "Profile"
+msgstr ""
+
+msgid "Please enter your password again."
+msgstr ""
+
+msgid "Enter your password and your membership withdrawal will be completed."
+msgstr ""
+
+msgid "To ensure your information is secure, we confirm your password once more."
+msgstr ""
+
+msgid "Member ID"
+msgstr ""
