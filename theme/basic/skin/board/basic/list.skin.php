@@ -33,8 +33,25 @@ if (count($list) == 0) {
 
 // add_stylesheet('css file path', Output order); Smaller numbers printed first
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
-?>
 
+// 데드라인 지난 공고와 지나지 않은 공고를 구분하여 재정렬.
+$list_passed_deadline = array();
+$list_left_deadline = array();
+
+$cur_datetime = new DateTime("now");
+
+foreach($list as $i => $v) {
+    $dealine = new DateTime($v['deadline']);
+    if ($dealine < $cur_datetime) {
+        array_push($list_passed_deadline, $v);
+    } else {
+        array_push($list_left_deadline, $v);
+    }
+}
+// END custom
+
+$list = array_merge($list_left_deadline, $list_passed_deadline);
+?>
 
 <!-- Start board page information { -->
 <div id="bo_list_total">
@@ -45,7 +62,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
 <!-- Start Board List { -->
 <div id="bo_list" style="width:<?php echo $width; ?>">
-	<!-- Start Board Category { -->
+    <!-- Start Board Category { -->
     <?php if ($is_category) { ?>
     <nav id="bo_cate">
         <h2><?php echo get_board_gettext_titles($board['bo_subject']); ?> <?php e__('Category'); ?></h2>
@@ -58,24 +75,24 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
     <!-- Start board page information and buttons { -->
     <div id="bo_btn_top">
-    	<!-- Board Search Start { -->
-	    <fieldset id="bo_sch">
-	        <legend><?php e__('Search for posts'); ?></legend>
+        <!-- Board Search Start { -->
+        <fieldset id="bo_sch">
+            <legend><?php e__('Search for posts'); ?></legend>
 
-	        <form name="fsearch" method="get">
-	        <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
-	        <input type="hidden" name="sca" value="<?php echo $sca ?>">
-	        <input type="hidden" name="sop" value="and">
-	        <label for="sfl" class="sound_only"><?php e__('Search target'); ?></label>
-	        <select name="sfl" id="sfl">
-	            <?php echo get_board_sfl_select_options($sfl); ?>
-	        </select>
-	        <label for="stx" class="sound_only"><?php e__('Search term'); ?><strong class="sound_only"> <?php e__('Required'); ?></strong></label>
-	        <input type="text" name="stx" value="<?php echo $stx ?>" required id="stx" class="sch_input" size="25" maxlength="20" placeholder="<?php e__('Enter search term'); ?>">
-	        <button type="submit" value="<?php e__('Search'); ?>" class="sch_btn"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only"><?php e__('Search'); ?></span></button>
-	        </form>
-	    </fieldset>
-	    <!-- } Board Search End -->
+            <form name="fsearch" method="get">
+            <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
+            <input type="hidden" name="sca" value="<?php echo $sca ?>">
+            <input type="hidden" name="sop" value="and">
+            <label for="sfl" class="sound_only"><?php e__('Search target'); ?></label>
+            <select name="sfl" id="sfl">
+                <?php echo get_board_sfl_select_options($sfl); ?>
+            </select>
+            <label for="stx" class="sound_only"><?php e__('Search term'); ?><strong class="sound_only"> <?php e__('Required'); ?></strong></label>
+            <input type="text" name="stx" value="<?php echo $stx ?>" required id="stx" class="sch_input" size="25" maxlength="20" placeholder="<?php e__('Enter search term'); ?>">
+            <button type="submit" value="<?php e__('Search'); ?>" class="sch_btn"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only"><?php e__('Search'); ?></span></button>
+            </form>
+        </fieldset>
+        <!-- } Board Search End -->
 
         <?php if ($rss_href || $admin_href || $write_href) { ?>
         <ul class="btn_bo_user">
@@ -124,6 +141,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <?php if ($board['activate_deadline']){ ?>
                 <th scope="col"><?php e__('deadline'); ?></th>
             <?php } ?>
+            <!-- END custom -->
         </tr>
         </thead>
 
@@ -139,11 +157,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <td class="td_num2"><?php echo $list[$i]['subject_head'] ?></td>
             
             <?php if ($is_category) { ?>
-			<td class="td_cate">
-				<?php if ($is_category && $list[$i]['ca_name']) { ?>
+            <td class="td_cate">
+                <?php if ($is_category && $list[$i]['ca_name']) { ?>
                 <a href="<?php echo $list[$i]['ca_name_href'] ?>" class="bo_cate_link"><?php echo $list[$i]['ca_name'] ?></a>
                 <?php } ?>
-			</td>
+            </td>
 
             <?php } ?>
 
@@ -162,8 +180,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                     if (isset($list[$i]['icon_hot'])) echo rtrim($list[$i]['icon_hot']);
                     ?>
                     <?php if ($list[$i]['icon_new']) { ?>
-		            <span class="new_icon">N<span class="sound_only"><?php e__('New'); ?></span></span>
-			        <?php } ?>
+                    <span class="new_icon">N<span class="sound_only"><?php e__('New'); ?></span></span>
+                    <?php } ?>
                     <?php if ($list[$i]['comment_cnt']) { ?><span class="sound_only"><?php e__('Comments'); ?></span><span class="cnt_cmt"><?php echo $list[$i]['wr_comment']; ?></span><span class="sound_only"><?php e__('Count'); ?></span><?php } ?>
                 </div>
 
@@ -174,13 +192,26 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <?php if ($is_nogood) { ?><td class="td_num"><?php echo $list[$i]['wr_nogood'] ?></td><?php } ?>
             <td class="td_datetime"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $list[$i]['datetime2'] ?></td>
 
-            <td>
-                <?php if($list[$i]['deadline'] == null) { ?>
-                    <label>마감일 없음</label>
-                <?php } else { ?>
-                    <label> <?php echo $list[$i]['deadline'] ?> </label>
-                <?php } ?>
-            </td>
+            <!-- if activate_deadline == true, then add deadline column. -->
+            <?php if ($board['activate_deadline']) { 
+                $cur_datetime = new DateTime("now"); ?>
+                <td>
+                    <?php if($list[$i]['deadline'] == null) { ?>
+                        <label>Rolling Base</label>
+                    <?php } else { 
+                        $datetime = new DateTime($list[$i]['deadline']);
+                        $date = date_create($list[$i]['deadline']);
+                        $reformatted_date = date_format($date, 'Y-m-d h:m'); ?>
+
+                        <?php if($datetime < $cur_datetime) { ?>
+                            <label style="color: red; white-space: nowrap;"> <?php echo $reformatted_date ?> </label>
+                        <?php } else { ?>
+                            <label style="white-space: nowrap;"> <?php echo $reformatted_date ?> </label>
+                        <?php } ?>
+                    <?php } ?>
+                </td>
+            <?php } ?>
+            <!-- END custom -->
 
         </tr>
         <?php } ?>
@@ -219,3 +250,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 <!-- Pagination -->
 <?php echo $write_pages;  ?>
 <!-- } End Board List -->
+
+
+
+
+
+
+
