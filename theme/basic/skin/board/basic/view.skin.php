@@ -26,7 +26,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                     $deadline_datetime = new DateTime($deadline);
                     
                     if ($deadline_datetime <= $cur_datetime) { ?>
-                        <span class="bo_v_tit"><?php echo $subject; ?><span style="color: red"> (overdue)</span></span>
+                        <span class="bo_v_tit"><?php echo $subject; ?> <span style="color: white; background-color: red"> (overdue) </span></span>
                     <?php } else { ?>
                         <span class="bo_v_tit"><?php echo $subject; ?></span>
                     <?php } ?>
@@ -34,7 +34,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                     <span class="bo_v_tit"><?php echo $subject; ?></span>
             <?php } ?>
             <!-- END custom -->
-            
+
         </h2>
     </header>
     <section id="bo_v_info">
@@ -43,6 +43,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         	<span class="sound_only"><?php e__('Writer'); ?></span> <strong><?php echo $view['name'] ?><?php echo $show_ip_view; ?></strong>
         	<span class="sound_only"><?php e__('Hit'); ?></span><strong><i class="fa fa-eye" aria-hidden="true"></i> <?php echo sprintf(n__('%s Hit', '%s Hits', $show_hit_number), $show_hit_number); ?></strong>
         	<span class="if_date"><span class="sound_only"><?php e__('Date'); ?></span><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $show_wr_datetime; ?></span>
+
+            <!-- 등록일 옆에 마감일 표시. 없으면 rolling base. -->
+            <?php 
+                $date = date_create($deadline);
+                $reformatted_date = date_format($date, 'Y-m-d h:m');
+            ?>
+            <span><?php  echo '/ deadline: '.$reformatted_date ?></span>
+            <!-- END custom -->
 		</div>
 		<div class="bo_v_info_r">
 			<a href="#bo_vc" class="bo_vc_btn"><span class="sound_only"><?php e__('Comment'); ?></span><i class="fa fa-commenting-o" aria-hidden="true"></i> <?php echo sprintf(n__('%s Comment', '%s Comments', $show_cmt_number), $show_cmt_number); ?></a>
