@@ -45,11 +45,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         	<span class="if_date"><span class="sound_only"><?php e__('Date'); ?></span><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $show_wr_datetime; ?></span>
 
             <!-- 등록일 옆에 마감일 표시. 없으면 rolling base. -->
-            <?php 
+            
+            <?php if ($deadline == null) { ?>
+                <span class="if_date">&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;rolling base</span>
+            <?php } else {  
                 $date = date_create($deadline);
-                $reformatted_date = date_format($date, 'Y-m-d h:m');
-            ?>
-            <span><?php  echo '/ deadline: '.$reformatted_date ?></span>
+                $reformatted_date = date_format($date, 'Y-m-d h:m'); ?>
+                <span class="if_date"><?php  echo ' /  deadline: '.$reformatted_date ?></span>
+            <?php } ?>
             <!-- END custom -->
 		</div>
 		<div class="bo_v_info_r">

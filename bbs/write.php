@@ -407,7 +407,6 @@ include_once('./board_head.php');
 $action_url = https_url(GML_BBS_DIR)."/write_update.php";
 
 echo '<!-- skin : '.(GML_IS_MOBILE ? $board['bo_mobile_skin'] : $board['bo_skin']).' -->';
-
 $option = '';
 $option_hidden = '';
 if ($is_notice || $is_html || $is_secret || $is_mail) {
@@ -447,7 +446,6 @@ for ($i=0; $is_file && $i<$file_count; $i++) {
 }
 
 include_once ($board_skin_path.'/write.skin.php');
-
 include_once (GML_THEME_JS_PATH.'/write_js.php');
 
 include_once('./board_tail.php');

@@ -1,6 +1,6 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // Unable to access direct pages
-
+include_once(GML_PLUGIN_PATH.'/jquery-ui/datepicker.php');
 // add_stylesheet('css file path', Output order); Smaller numbers printed first
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
 ?>
@@ -125,6 +125,28 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     </div>
     <?php } ?>
 
+    <!-- 마감일 입력 필드-->
+    <div >
+        <span style="font-weight:bold; font-size: 15px; color: #555">
+            <br/>&nbsp;- 마감일 입력
+        </span>
+        <br/>
+        <br/>
+        <label for='deadline_date'>&nbsp;날짜</label>
+        <input type="text" name="deadline_date" id="deadline_date" style="height: 25px; width:100px; text-align: center;" readonly/>
+
+        <label for='deadline_hour'>&nbsp;시간</label>
+        <input type="number" name="deadline_hour" id="deadline_hour" min=0 max=23 style="height: 25px; width:60px; text-align: center;"/>
+
+        <label for='deadline_min'>&nbsp;분</label>
+        <input type="number" name="deadline_min" id="deadline_min" min=0 max=59 style="height: 25px; width:60px; text-align: center;"/>
+        &nbsp;&nbsp;&nbsp;
+        <button type="button" id="deadline_clear" style="width: 60px; height: 20px;">
+            Clear
+        </button>
+    </div>
+    <!-- END custom -->
+
     <?php if ($is_use_captcha) { // USE Captcha  ?>
     <div class="write_div">
         <?php echo $captcha_html ?>
@@ -136,5 +158,22 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         <input type="submit" value="<?php e__('Save'); ?>" id="btn_submit" accesskey="s" class="btn_submit btn">
     </div>
     </form>
+
+    <script>
+        $(function(){
+            $("#deadline_date").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", minDate: "+0d;"});
+        });
+
+        $(document).ready(function() { 
+            const clearBtn = document.getElementById('deadline_clear');
+            clearBtn.onclick = () => {
+                document.getElementById('deadline_date').value = '';
+                document.getElementById('deadline_hour').value = '';
+                document.getElementById('deadline_min').value = '';
+            };
+        });
+    </script>
+
 </section>
+
 <!-- } End creating / modifying posts -->

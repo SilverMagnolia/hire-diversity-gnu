@@ -5,7 +5,6 @@ include_once(GML_CAPTCHA_PATH.'/captcha.lib.php');
 
 // 토큰체크
 check_write_token($bo_table);
-
 $gml['title'] = __('Save post');
 
 $msg = array();
