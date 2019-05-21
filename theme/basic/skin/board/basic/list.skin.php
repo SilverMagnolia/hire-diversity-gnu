@@ -197,7 +197,7 @@ $list = array_merge($list_left_deadline, $list_passed_deadline);
                 $cur_datetime = new DateTime("now"); ?>
                 <td>
                     <?php if($list[$i]['deadline'] == null) { ?>
-                        <label>Rolling Base</label>
+                        <label style="white-space: nowrap;">Rolling Base</label>
                     <?php } else { 
                         $datetime = new DateTime($list[$i]['deadline']);
                         $date = date_create($list[$i]['deadline']);

@@ -14,10 +14,29 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <?php if ($category_name) { ?>
             <span class="bo_v_cate"><?php echo $view['ca_name']; // Category Output End ?></span>
             <?php } ?>
-            <span class="bo_v_tit"><?php echo $show_wr_subject; // Print a Subject for the posts ?></span>
+
+            <!-- 마감된 공고는 제목 옆에 (overdue) 표시 -->
+            <?php 
+                $subject = $show_wr_subject;
+
+                $cur_datetime = new DateTime("now");
+                $deadline = $view['deadline'];
+
+                if ($deadline != null) {
+                    $deadline_datetime = new DateTime($deadline);
+                    
+                    if ($deadline_datetime <= $cur_datetime) { ?>
+                        <span class="bo_v_tit"><?php echo $subject; ?><span style="color: red"> (overdue)</span></span>
+                    <?php } else { ?>
+                        <span class="bo_v_tit"><?php echo $subject; ?></span>
+                    <?php } ?>
+            <?php } else { ?>
+                    <span class="bo_v_tit"><?php echo $subject; ?></span>
+            <?php } ?>
+            <!-- END custom -->
+            
         </h2>
     </header>
-
     <section id="bo_v_info">
         <h2><?php e__('Page Info'); ?></h2>
         <div class="bo_v_info_l">
