@@ -132,14 +132,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         </span>
         <br/>
         <br/>
-        <label for='deadline_date'>&nbsp;날짜</label>
-        <input type="text" name="deadline_date" id="deadline_date" style="height: 25px; width:100px; text-align: center;" readonly/>
+        <label for='deadline_date'></label>
+        <input type="text" name="deadline_date" id="deadline_date" style="height: 25px; width:100px; text-align: center;" placeholder="날짜" readonly/>
 
-        <label for='deadline_hour'>&nbsp;시간</label>
-        <input type="number" name="deadline_hour" id="deadline_hour" min=0 max=23 style="height: 25px; width:60px; text-align: center;"/>
+        <label for='deadline_hour'></label>
+        <input type="number" name="deadline_hour" id="deadline_hour" min=0 max=23 style="height: 25px; width:60px; text-align: center;" placeholder="시" />
 
-        <label for='deadline_min'>&nbsp;분</label>
-        <input type="number" name="deadline_min" id="deadline_min" min=0 max=59 style="height: 25px; width:60px; text-align: center;"/>
+        <label for='deadline_min'></label>
+        <input type="number" name="deadline_min" id="deadline_min" min=0 max=59 style="height: 25px; width:60px; text-align: center;" placeholder="분"/>
         &nbsp;&nbsp;&nbsp;
         <button type="button" id="deadline_clear" style="width: 60px; height: 20px;">
             Clear
@@ -159,20 +159,44 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     </div>
     </form>
 
+    <!-- Custom script -->
     <script>
+
+        // 캘린더
         $(function(){
             $("#deadline_date").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", minDate: "+0d;"});
         });
 
         $(document).ready(function() { 
+
+            // 마감일 텍스트 필드 리셋 버튼 온클릭
             const clearBtn = document.getElementById('deadline_clear');
             clearBtn.onclick = () => {
                 document.getElementById('deadline_date').value = '';
                 document.getElementById('deadline_hour').value = '';
                 document.getElementById('deadline_min').value = '';
             };
+
+            // 마감일-시간 입력된 값 유효성 체크(0 ~ 23)
+            document.getElementById('deadline_hour').onkeyup = function(event) {
+                const n = parseInt(this.value);
+
+                if ((isNaN(n)) || (n > 23) || (n < 0)) {
+                    this.value = '';
+                }
+            }
+
+            // 마감일-분 입력된 값 유효성 체크(0 ~ 59)
+            document.getElementById('deadline_min').onkeyup = function(event) {
+                const n = parseInt(this.value);
+
+                if ((isNaN(n)) || (n > 59) || (n < 0)) {
+                    this.value = '';
+                }
+            }
         });
     </script>
+    <!-- END custom -->
 
 </section>
 
