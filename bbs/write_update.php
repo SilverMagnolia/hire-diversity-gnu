@@ -3,6 +3,7 @@ include_once('./_common.php');
 include_once(GML_LIB_PATH.'/naver_syndi.lib.php');
 include_once(GML_CAPTCHA_PATH.'/captcha.lib.php');
 
+
 // 토큰체크
 check_write_token($bo_table);
 $gml['title'] = __('Save post');
@@ -24,6 +25,32 @@ if($board['bo_use_category']) {
 } else {
     $ca_name = '';
 }
+
+// 마감일 처리
+$deadline_date = $_POST['deadline_date'];
+$deadline_hour = $_POST['deadline_hour'];
+$deadline_min = $_POST['deadline_min'];
+
+$deadline = "";
+
+if ($deadline_date == "") {
+    $deadline = null;
+
+} else {
+    if ($deadline_hour == "" && $deadline_min == "") {
+        $deadline_hour = "18";
+        $deadline_min = "00";
+    } else if ($deadline_hour == "") {
+        $deadline_hour = "18";
+    } else if ($deadline_min == "") {
+        $deadline_min = "00";
+    }
+
+    $deadline = $deadline_date." ".$deadline_hour.":".$deadline_min.":"."00";
+    $deadline = date('Y-m-d H:i:s', strtotime($deadline));
+}
+
+// END custom
 
 $wr_subject = '';
 if (isset($_POST['wr_subject'])) {
@@ -276,7 +303,14 @@ if ($w == '' || $w == 'r') {
                      wr_7 = '$wr_7',
                      wr_8 = '$wr_8',
                      wr_9 = '$wr_9',
-                     wr_10 = '$wr_10' ";
+                     wr_10 = '$wr_10'"; 
+
+    // 마감일
+    if ($deadline != null) {
+        $sql .= ", deadline = '$deadline'";
+    } 
+    // END custom
+
     sql_query($sql);
 
     $wr_id = sql_insert_id();
@@ -388,10 +422,19 @@ if ($w == '' || $w == 'r') {
                      wr_7 = '{$wr_7}',
                      wr_8 = '{$wr_8}',
                      wr_9 = '{$wr_9}',
-                     wr_10= '{$wr_10}'
-                     {$sql_ip}
-                     {$sql_password}
-              where wr_id = '{$wr['wr_id']}' ";
+                     wr_10= '{$wr_10}'";
+    // 마감일 업데이트
+    if ($deadline == null) {
+        $sql .= ", deadline = null";
+    } else {
+        $sql .= ", deadline ='{$deadline}'";
+    }
+
+    $sql .= "{$sql_ip}
+             {$sql_password}
+             where wr_id = '{$wr['wr_id']}' ";
+    // END custom
+
     sql_query($sql);
 
     // 분류가 수정되는 경우 해당되는 코멘트의 분류명도 모두 수정함

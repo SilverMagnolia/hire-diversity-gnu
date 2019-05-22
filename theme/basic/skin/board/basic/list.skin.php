@@ -201,7 +201,7 @@ $list = array_merge($list_left_deadline, $list_passed_deadline);
                     <?php } else { 
                         $datetime = new DateTime($list[$i]['deadline']);
                         $date = date_create($list[$i]['deadline']);
-                        $reformatted_date = date_format($date, 'Y-m-d h:m'); ?>
+                        $reformatted_date = date_format($date, 'Y-m-d H:i'); ?>
 
                         <?php if($datetime < $cur_datetime) { ?>
                             <label style="color: red; white-space: nowrap;"> <?php echo $reformatted_date ?> </label>

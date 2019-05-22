@@ -50,7 +50,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                 <span class="if_date">&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;rolling base</span>
             <?php } else {  
                 $date = date_create($deadline);
-                $reformatted_date = date_format($date, 'Y-m-d h:m'); ?>
+                $reformatted_date = date_format($date, 'Y-m-d H:i'); ?>
                 <span class="if_date"><?php  echo ' /  deadline: '.$reformatted_date ?></span>
             <?php } ?>
             <!-- END custom -->
