@@ -35,22 +35,25 @@ if (count($list) == 0) {
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
 
 // 데드라인 지난 공고와 지나지 않은 공고를 구분하여 재정렬.
-$list_passed_deadline = array();
-$list_left_deadline = array();
+if ($board['activate_deadline']) {
+    $list_passed_deadline = array();
+    $list_left_deadline = array();
 
-$cur_datetime = new DateTime("now");
+    $cur_datetime = new DateTime("now");
 
-foreach($list as $i => $v) {
-    $dealine = new DateTime($v['deadline']);
-    if ($dealine < $cur_datetime) {
-        array_push($list_passed_deadline, $v);
-    } else {
-        array_push($list_left_deadline, $v);
+    foreach($list as $i => $v) {
+        $dealine = new DateTime($v['deadline']);
+        if ($dealine < $cur_datetime) {
+            array_push($list_passed_deadline, $v);
+        } else {
+            array_push($list_left_deadline, $v);
+        }
     }
+
+    $list = array_merge($list_left_deadline, $list_passed_deadline);
 }
 // END custom
 
-$list = array_merge($list_left_deadline, $list_passed_deadline);
 ?>
 
 <!-- Start board page information { -->
@@ -201,7 +204,7 @@ $list = array_merge($list_left_deadline, $list_passed_deadline);
                     <?php } else { 
                         $datetime = new DateTime($list[$i]['deadline']);
                         $date = date_create($list[$i]['deadline']);
-                        $reformatted_date = date_format($date, 'Y-m-d H:i'); ?>
+                        $reformatted_date = date_format($date, 'Y-m-d'); ?>
 
                         <?php if($datetime < $cur_datetime) { ?>
                             <label style="color: red; white-space: nowrap;"> <?php echo $reformatted_date ?> </label>

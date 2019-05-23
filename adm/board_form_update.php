@@ -163,10 +163,16 @@ $sql_common .= " bo_insert_content   = '{$_POST['bo_insert_content']}',
                 bo_7                = '{$_POST['bo_7']}',
                 bo_8                = '{$_POST['bo_8']}',
                 bo_9                = '{$_POST['bo_9']}',
-                bo_10               = '{$_POST['bo_10']}' ";
+                bo_10               = '{$_POST['bo_10']}'";
+
+if ($_POST['activate_deadline'] == "on") {
+    $sql_common .= ", activate_deadline = TRUE";
+} else {
+    $sql_common .= ", activate_deadline = FALSE";
+}
 
 if ($w == '') {
-
+    
     $row = sql_fetch(" select count(*) as cnt from {$gml['board_table']} where bo_table = '{$bo_table}' ");
     if ($row['cnt'])
         alert(sprintf(__('%s is already a TABLE.'), $bo_table));

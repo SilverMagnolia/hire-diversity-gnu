@@ -177,6 +177,16 @@ $frm_submit .= '<input type="submit" value="'.__('Save').'" class="btn_submit bt
                 __('Check if the number in the bulletin board list does not match'), number_format($board['bo_count_write']), number_format($board['bo_count_comment'])));   //게시판 목록에서 글의 번호가 맞지 않을 경우에 체크하십시오. ?></span>
                 <input type="checkbox" name="proc_count" value="1" id="proc_count"> <?php e__('Adjust'); ?>
             </li>
+
+            <!-- 마감일 on/off -->
+            <li>
+                <span class="lb_block">
+                    <label for="activate_deadline"><?php e__('Activate Deadline'); ?></label>
+                </span>
+                <input type="checkbox" name="activate_deadline" id="activate_deadline">
+            </li>
+            <!-- END custom -->
+
             <?php } ?>
         </ul>
     </div>
