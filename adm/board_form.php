@@ -183,7 +183,7 @@ $frm_submit .= '<input type="submit" value="'.__('Save').'" class="btn_submit bt
                 <span class="lb_block">
                     <label for="activate_deadline"><?php e__('Activate Deadline'); ?></label>
                 </span>
-                <input type="checkbox" name="activate_deadline" id="activate_deadline">
+                <input type="checkbox" name="activate_deadline" id="activate_deadline" <?php if ($board['activate_deadline']) { ?> checked <?php } ?>>
             </li>
             <!-- END custom -->
 
