@@ -1,6 +1,6 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // Unable to access direct pages
-
+// date_default_timezone_set("Asia/Seoul"); // Custom
 $colspan = 5;
 
 if ($is_admin) $colspan++;
@@ -142,7 +142,7 @@ if ($board['activate_deadline']) {
 
             <!-- if board['activate_deadline'] is true, add deadline column. -->
             <?php if ($board['activate_deadline']){ ?>
-                <th scope="col"><?php e__('deadline'); ?></th>
+                <th scope="col"><?php e__('due date'); ?></th>
             <?php } ?>
             <!-- END custom -->
         </tr>
@@ -198,18 +198,30 @@ if ($board['activate_deadline']) {
             <!-- if activate_deadline == true, then add deadline column. -->
             <?php if ($board['activate_deadline']) { 
                 $cur_datetime = new DateTime("now"); ?>
-                <td>
-                    <?php if($list[$i]['deadline'] == null) { ?>
-                        <label style="white-space: nowrap;">Rolling Base</label>
+                <td style="text-align: center">
+
+                    <?php if ($list[$i]['deadline'] == null) { 
+                        // 롤링 베이스 || 상시 채용
+                        if ($list[$i]['is_rolling_base']) {?>
+                            <span style="white-space: nowrap; color: #2980B9;">Rolling Base</span>
+                        <?php } else { ?>
+                            <span style="white-space: nowrap; color: #2980B9;">O.E</span>
+                        <?php } ?>
                     <?php } else { 
+                        // 마감일 (온 고잉 || 오버듀)
                         $datetime = new DateTime($list[$i]['deadline']);
                         $date = date_create($list[$i]['deadline']);
-                        $reformatted_date = date_format($date, 'Y-m-d'); ?>
+                        $reformatted_date = date_format($date, 'Y-m-d'); 
 
-                        <?php if($datetime < $cur_datetime) { ?>
-                            <label style="color: red; white-space: nowrap;"> <?php echo $reformatted_date ?> </label>
+                        $diff = $datetime->diff($cur_datetime);
+                        $diffDays = (integer)$diff->format( "%R%a" ); ?>
+
+                        <?php if($diffDays == 0 && $datetime > $cur_datetime) { ?> 
+                            <span style="color: #f63e54; white-space: nowrap;">TODAY</span>
+                        <?php } else if($datetime < $cur_datetime) { ?>
+                            <span style="color: black; white-space: nowrap;">OVERDUE</span>
                         <?php } else { ?>
-                            <label style="white-space: nowrap;"> <?php echo $reformatted_date ?> </label>
+                            <span style="white-space: nowrap; color: #2980B9"> <?php echo $reformatted_date ?> </span>
                         <?php } ?>
                     <?php } ?>
                 </td>

@@ -11,7 +11,6 @@
 //      > bbs/search.php (검색 결과 보기)
 //      > theme_path/index.php (각 테마 인덱스 페이지)
 include_once('./_common.php');
-
 require_once(GML_THEME_PATH.'/index.php');
 return;
 ?>

@@ -3,6 +3,7 @@ if (!defined("_GNUBOARD_")) exit; // Unable to access direct pages
 
 // add_stylesheet('css file path', Output order); Smaller numbers printed first
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
+$showOverdueAtTheBottomOfContent = false;
 ?>
 
 <script src="<?php echo GML_JS_URL; ?>/viewimageresize.js"></script>
@@ -14,8 +15,45 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <?php if ($category_name) { ?>
             <span class="bo_v_cate"><?php echo $view['ca_name']; // Category Output End ?></span>
             <?php } ?>
+            <div>
+            	<!-- 제목 위에 마감 상태 표시 -->
+	            <?php 
+	                $cur_datetime = new DateTime("now");
+	                $deadline = $view['deadline'];
+	                $deadline_datetime = new DateTime($deadline);
+
+	                $diff = $deadline_datetime->diff($cur_datetime);
+	                $diffDays = (integer)$diff->format( "%R%a" );
+
+	                if ($deadline != null) {    
+	                	$date = date_create($deadline);
+	                    $reformatted_date = date_format($date, 'Y-m-d H:i:s');
+
+	                    if ($deadline_datetime <= $cur_datetime) { 
+	                        $showOverdueAtTheBottomOfContent = true;
+	                        ?>
+	                        <!-- overdue -->
+	                        <span style="color: black; font-weight: bold; font-size: 20px"><br/>OVERDUE (<?php echo $reformatted_date ?>)</span>
+
+	                    <?php } else if ($diffDays == 0 && $cur_datetime < $deadline_datetime) { ?>
+	                        <!-- 마감일 오늘이고 아직 지나지 않음. -->
+	                        <span style="color: #f63e54; font-weight: bold; font-size: 20px"><br/>TODAY (<?php echo $reformatted_date ?>) </span>
+
+	                    <?php } else { ?>
+	                        <!-- 마감일 오늘 이후. -->
+	                        <span style="color: #2980B9; font-weight: bold; font-size: 20px"><br/><?php echo $reformatted_date ?> </span>
+	                    <?php } ?>
+	            <?php } else { ?>
+	                    <!-- 마감일 없음 (롤링 베이스 || 상시 채용)-->
+	                    <span style="color: #2980B9; font-weight: bold; font-size: 20px"><br/><?php echo $view['is_rolling_base'] ? 'Rolling Base' : 'Occasion Employment' ?> </span>
+	            <?php } ?>
+	            <!-- END custom -->
+
+            </div>
             <span class="bo_v_tit">
-            <?php echo $show_wr_subject // Print a Subject for the posts ?></span>
+	            <?php echo $show_wr_subject // Print a Subject for the posts ?>
+            </span>
+
         </h2>
         <div id="bo_v_info">
 	        <h2><?php e__('Page Info'); ?></h2>
@@ -53,7 +91,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         <?php } ?>
 
         <!-- Start body content { -->
-        <div id="bo_v_con"><?php echo get_view_thumbnail($view['content']); ?></div>
+        <div id="bo_v_con"><?php echo get_view_thumbnail($view['content']); ?>
+        	<!-- 마감일 지난 경우 글본문 마지막에 OVERDUE 삽입 -->
+            <?php if ($showOverdueAtTheBottomOfContent) { ?>
+                <br/><br/>
+                <p style="text-align: center; color: black; font-weight: bold; font-size: 40px"> OVERDUE </p>
+            <?php } ?>
+            <!-- END custom -->	
+        </div>
         <?php //echo $view['rich_content']; // If you are using the same code as {image:0} ?>
         <!-- } End body content -->
 

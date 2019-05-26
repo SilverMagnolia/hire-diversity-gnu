@@ -105,7 +105,13 @@ while ($row = sql_fetch_array($result))
                              wr_7 = '".addslashes($row2['wr_7'])."',
                              wr_8 = '".addslashes($row2['wr_8'])."',
                              wr_9 = '".addslashes($row2['wr_9'])."',
-                             wr_10 = '".addslashes($row2['wr_10'])."' ";
+                             wr_10 = '".addslashes($row2['wr_10'])."',
+                             is_rolling_base = '{$row2['is_rolling_base']}'";
+
+            if ($row2['deadline'] != null) {
+                $sql .= ", deadline ='{$row2['deadline']}'";
+            }
+
             sql_query($sql);
 
             $insert_id = sql_insert_id();

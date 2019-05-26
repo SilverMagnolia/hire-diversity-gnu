@@ -336,6 +336,43 @@ if (isset($write['wr_subject'])) {
     $subject = str_replace("\"", "&#034;", get_text(cut_str($write['wr_subject'], 255), 0));
 }
 
+
+$deadline = $write['deadline'];
+$is_rolling_base = $write['is_rolling_base'] ? true : false;
+
+$deadline_date = "";
+$deadline_hour = "";
+$deadline_min = "";
+
+if ($deadline != null) {
+    $split = date_parse_from_format('Y-m-d H:i:s', $deadline);
+    $year = $split['year'];
+    $month = $split['month'];
+    $day = $split['day'];
+    $hour = $split['hour'];
+    $min = $split['minute'];
+
+    if ((int)$month  < 10) {
+        $month = '0'.$month;
+    }
+
+    if ((int)$day < 10) {
+        $day = '0'.$day;
+    }
+
+    if ((int)$hour < 10) {
+        $hour = '0'.$hour;
+    }
+
+    if ((int)$min < 10) {
+        $min = '0'.$min;
+    }
+ 
+    $deadline_date = $year.'-'.$month.'-'.$day;
+    $deadline_hour = $hour;
+    $deadline_min = $min; 
+}
+
 $content = '';
 if ($w == '') {
     $content = $board['bo_insert_content'];

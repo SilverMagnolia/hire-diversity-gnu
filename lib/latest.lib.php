@@ -25,12 +25,12 @@ function latest($skin_dir='', $bo_table, $rows=10, $subject_len=40, $cache_time=
 
     $caches = null;
 
-    if(GML_USE_CACHE) {
-        $cache_file_name = "latest-{$bo_table}-{$skin_dir}-{$rows}-{$subject_len}-".gml_cache_secret_key();
-        $caches = gml_get_cache($cache_file_name);
-        $cache_list = isset($caches['list']) ? $caches['list'] : array();
-        gml_latest_cache_data($bo_table, $cache_list);
-    }
+    // if(GML_USE_CACHE) {
+    //     $cache_file_name = "latest-{$bo_table}-{$skin_dir}-{$rows}-{$subject_len}-".gml_cache_secret_key();
+    //     $caches = gml_get_cache($cache_file_name);
+    //     $cache_list = isset($caches['list']) ? $caches['list'] : array();
+    //     gml_latest_cache_data($bo_table, $cache_list);
+    // }
 
     if( $caches === null ){
 
@@ -41,7 +41,15 @@ function latest($skin_dir='', $bo_table, $rows=10, $subject_len=40, $cache_time=
         $board['bo_use_sideview'] = 0;  // not use sideview
 
         $tmp_write_table = $gml['write_prefix'] . $bo_table; // 게시판 테이블 전체이름
-        $sql = " select * from {$tmp_write_table} where wr_is_comment = 0 order by wr_num limit 0, {$rows} ";
+
+
+        // 원래 쿼리(마감일 고려하지 않은 버전)
+        // $sql = " select * from {$tmp_write_table} where wr_is_comment = 0 order by wr_num limit 0, {$rows} ";
+        
+        // 가장 최신글을 rows개 만큼 가져오는데 듀 데이트가 넘지 않은 것만.
+        $sql = "select * from {$tmp_write_table} where (deadline is null OR NOW() < deadline) AND wr_is_comment = 0 order by wr_num limit 0, {$rows}";
+        // END custom
+
         $result = sql_query($sql);
         for ($i=0; $row = sql_fetch_array($result); $i++) {
             try {
@@ -57,6 +65,9 @@ function latest($skin_dir='', $bo_table, $rows=10, $subject_len=40, $cache_time=
 
             $list[$i]['first_file_thumb'] = (isset($row['wr_file']) && $row['wr_file']) ? get_board_file_db($bo_table, $row['wr_id'], 'bf_file, bf_content', "and bf_type between '1' and '3'", true) : array('bf_file'=>'', 'bf_content'=>'');
             $list[$i]['bo_table'] = $bo_table;
+            $list[$i]['deadline'] = $row['deadline'];
+            $list[$i]['is_rolling_base'] = $row['is_rolling_base'];
+
             // 썸네일 추가
             if($options) {
                 $options_arr = explode(',', $options);

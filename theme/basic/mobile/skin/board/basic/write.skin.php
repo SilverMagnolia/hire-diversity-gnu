@@ -1,6 +1,6 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // Unable to access direct pages
-
+include_once(GML_PLUGIN_PATH.'/jquery-ui/datepicker.php');
 // add_stylesheet('css file path', Output order); Smaller numbers printed first
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
 ?>
@@ -74,6 +74,37 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <input type="text" name="wr_subject" value="<?php echo $subject ?>" id="wr_subject" required class="frm_input full_input required" placeholder="<?php e__('Subject'); ?>">
         </div>
 
+        <!-- 마감일 입력 필드-->
+        <div >
+            <span style="font-weight:bold; font-size: 15px; color: #555">
+                <br/>&nbsp;Due Date
+            </span>
+            <br/>
+            <br/>
+            <label for='deadline_date'></label>
+            <input type="text" name="deadline_date" id="deadline_date" value="<?php echo $deadline_date ?>" style="height: 25px; width:100px; text-align: center;" placeholder="select date" readonly/>
+
+            <label for='deadline_hour'></label>
+            <input type="number" name="deadline_hour" id="deadline_hour" min=0 max=23 value="<?php echo $deadline_hour ?>" style="height: 25px; width:60px; text-align: center;" placeholder="hour" />
+
+            <label for='deadline_min'></label>
+            <input type="number" name="deadline_min" id="deadline_min" min=0 max=59 value="<?php echo $deadline_min ?>" style="height: 25px; width:60px; text-align: center;" placeholder="minute"/>
+            &nbsp;&nbsp;&nbsp;
+            <button type="button" id="deadline_clear" style="width: 60px; height: 20px;">
+                Clear
+            </button>
+            <div style="height:10px"></div>
+        </div>
+
+        <!-- 롤링 베이스 체크 박스 -->
+        <span class="lb_block">
+            <label for="is_rolling_base" style="font-weight:bold; font-size: 15px; color: #555">Rolling Base</label>
+        </span>
+        &nbsp;&nbsp;
+        <input type="checkbox" name="is_rolling_base" id="is_rolling_base" <?php if ($is_rolling_base) { ?> checked <?php } ?>>
+        <br/><br/><br/>
+        <!-- END custom -->
+
         <div class="write_div">
             <label for="wr_content" class="sound_only"><?php e__('Content'); ?><strong><?php e__('Required'); ?></strong></label>
             <?php if($use_character_number) { ?>
@@ -126,5 +157,42 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     </div>
     </form>
     <!-- } End creating / modifying posts -->
-    
+    <!-- Custom script -->
+    <script>
+
+        // 캘린더
+        $(function(){
+            $("#deadline_date").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99"});
+        });
+
+        $(document).ready(function() { 
+
+            // 마감일 텍스트 필드 리셋 버튼 온클릭
+            const clearBtn = document.getElementById('deadline_clear');
+            clearBtn.onclick = () => {
+                document.getElementById('deadline_date').value = '';
+                document.getElementById('deadline_hour').value = '';
+                document.getElementById('deadline_min').value = '';
+            };
+
+            // 마감일-시간 입력된 값 유효성 체크(0 ~ 23)
+            document.getElementById('deadline_hour').onkeyup = function(event) {
+                const n = parseInt(this.value);
+
+                if ((isNaN(n)) || (n > 23) || (n < 0)) {
+                    this.value = '';
+                }
+            }
+
+            // 마감일-분 입력된 값 유효성 체크(0 ~ 59)
+            document.getElementById('deadline_min').onkeyup = function(event) {
+                const n = parseInt(this.value);
+
+                if ((isNaN(n)) || (n > 59) || (n < 0)) {
+                    this.value = '';
+                }
+            }
+        });
+    </script>
+    <!-- END custom -->
 </section>

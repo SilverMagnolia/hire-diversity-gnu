@@ -3,6 +3,7 @@ if (!defined('_GNUBOARD_')) exit; // Unable to access direct pages
 
 // add_stylesheet('css file path', Output order); Smaller numbers printed first
 add_stylesheet('<link rel="stylesheet" href="'.$latest_skin_url.'/style.css">', 0);
+$cur_datetime = new DateTime("now");
 ?>
 
 <div class="lt">
@@ -27,9 +28,44 @@ add_stylesheet('<link rel="stylesheet" href="'.$latest_skin_url.'/style.css">', 
 	        <ul class="lct_info">
 				<li class="lt_nick"><span class="sound_only"><?php e__('Writer'); ?></span><?php echo $list[$i]['name']; ?></li>
 				<li class="lt_date"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $list[$i]['datetime2']; ?></li>
-				<?php if ($list[$i]['comment_cnt']) { ?>
-		        <li class="lt_comnt"><i class="fa fa-commenting-o" aria-hidden="true"></i> <?php echo $list[$i]['comment_cnt'] ?></li>
-		        <?php } ?>
+
+				<!-- 마감일 처리 -->
+				<li><span style="color: #ddd">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span></li>
+				
+	            <?php if ($list[$i]['deadline'] != null) { 
+	                // ]today or later
+	                $deadline_datetime = new DateTime($list[$i]['deadline']);
+
+	                $date = date_create($list[$i]['deadline']);
+	                $reformatted_date = date_format($date, 'Y-m-d');   
+
+	                $diff = $deadline_datetime->diff($cur_datetime);
+	                $diffDays = (integer)$diff->format( "%R%a" );
+	                
+	                if ($diffDays == 0 && $cur_datetime < $deadline_datetime) { ?>
+	                    <!-- 마감일 오늘이고 아직 지나지 않음. -->
+	                    <li class="lt_date">
+							<span style="color: #f63e54">TODAY</span>
+						</li>
+
+	                <?php } else { ?>
+	                	<!-- 마감일 오늘 이후. -->
+	                	<li class="lt_date">
+							<span style="color: #2980B9"><?php echo 'Due Date '.$reformatted_date ?></span>
+						</li>
+	                    
+	                <?php } ?>
+
+	            <?php } else if ($list[$i]['is_rolling_base']) { ?>
+	            	<li class="lt_date">
+						<span style="color: #2980B9">Rolling Base</span>
+					</li>
+	            <?php } else { ?>
+	            	<li class="lt_date">
+						<span style="color: #2980B9">O.E</span>
+					</li>
+	            <?php } ?>
+	            <!-- END custom -->
 			</ul>
         </li>
     <?php }  ?>

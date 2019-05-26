@@ -30,6 +30,7 @@ if($board['bo_use_category']) {
 $deadline_date = $_POST['deadline_date'];
 $deadline_hour = $_POST['deadline_hour'];
 $deadline_min = $_POST['deadline_min'];
+$deadline_sec = "00";
 
 $deadline = "";
 
@@ -38,16 +39,25 @@ if ($deadline_date == "") {
 
 } else {
     if ($deadline_hour == "" && $deadline_min == "") {
-        $deadline_hour = "18";
-        $deadline_min = "00";
+        $deadline_hour = "23";
+        $deadline_min = "59";
+        $deadline_sec = "59";
+
     } else if ($deadline_hour == "") {
         $deadline_hour = "18";
     } else if ($deadline_min == "") {
         $deadline_min = "00";
     }
 
-    $deadline = $deadline_date." ".$deadline_hour.":".$deadline_min.":"."00";
+    $deadline = $deadline_date." ".$deadline_hour.":".$deadline_min.":".$deadline_sec;
     $deadline = date('Y-m-d H:i:s', strtotime($deadline));
+}
+
+
+// 롤링 베이스
+$is_rolling_base = false;
+if ($_POST['is_rolling_base'] == 'on') {
+    $is_rolling_base = true;
 }
 
 // END custom
@@ -303,7 +313,8 @@ if ($w == '' || $w == 'r') {
                      wr_7 = '$wr_7',
                      wr_8 = '$wr_8',
                      wr_9 = '$wr_9',
-                     wr_10 = '$wr_10'"; 
+                     wr_10 = '$wr_10',
+                     is_rolling_base = '$is_rolling_base'"; 
 
     // 마감일
     if ($deadline != null) {
@@ -422,7 +433,8 @@ if ($w == '' || $w == 'r') {
                      wr_7 = '{$wr_7}',
                      wr_8 = '{$wr_8}',
                      wr_9 = '{$wr_9}',
-                     wr_10= '{$wr_10}'";
+                     wr_10= '{$wr_10}',
+                     is_rolling_base = '{$is_rolling_base}'";
     // 마감일 업데이트
     if ($deadline == null) {
         $sql .= ", deadline = null";

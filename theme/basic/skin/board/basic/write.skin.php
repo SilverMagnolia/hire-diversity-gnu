@@ -86,6 +86,37 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         </div>
     </div>
 
+    <!-- 마감일 입력 필드-->
+    <div >
+        <span style="font-weight:bold; font-size: 15px; color: #555">
+            <br/>&nbsp;Due Date
+        </span>
+        <br/>
+        <br/>
+        <label for='deadline_date'></label>
+        <input type="text" name="deadline_date" id="deadline_date" value="<?php echo $deadline_date ?>" style="height: 25px; width:100px; text-align: center;" placeholder="select date" readonly/>
+
+        <label for='deadline_hour'></label>
+        <input type="number" name="deadline_hour" id="deadline_hour" value="<?php echo $deadline_hour ?>" min=0 max=23 style="height: 25px; width:60px; text-align: center;" placeholder="hour" />
+
+        <label for='deadline_min'></label>
+        <input type="number" name="deadline_min" id="deadline_min" value="<?php echo $deadline_min ?>" min=0 max=59 style="height: 25px; width:60px; text-align: center;" placeholder="minute"/>
+        &nbsp;&nbsp;&nbsp;
+        <button type="button" id="deadline_clear" style="width: 60px; height: 20px;">
+            Clear
+        </button>
+        <div style="height:10px"></div>
+    </div>
+
+    <!-- 롤링 베이스 체크 박스 -->
+    <span class="lb_block">
+        <label for="is_rolling_base" style="font-weight:bold; font-size: 15px; color: #555">Rolling Base</label>
+    </span>
+    &nbsp;&nbsp;
+    <input type="checkbox" name="is_rolling_base" id="is_rolling_base" <?php if ($is_rolling_base) { ?> checked <?php } ?>>
+    <br/><br/><br/>
+    <!-- END custom -->
+
     <div class="write_div">
         <label for="wr_content" class="sound_only"><?php e__('Content'); ?><strong><?php e__('Required'); ?></strong></label>
         <div class="wr_content <?php echo $dhtml_editor_class ?>">
@@ -125,28 +156,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     </div>
     <?php } ?>
 
-    <!-- 마감일 입력 필드-->
-    <div >
-        <span style="font-weight:bold; font-size: 15px; color: #555">
-            <br/>&nbsp;- 마감일 입력
-        </span>
-        <br/>
-        <br/>
-        <label for='deadline_date'></label>
-        <input type="text" name="deadline_date" id="deadline_date" style="height: 25px; width:100px; text-align: center;" placeholder="날짜" readonly/>
-
-        <label for='deadline_hour'></label>
-        <input type="number" name="deadline_hour" id="deadline_hour" min=0 max=23 style="height: 25px; width:60px; text-align: center;" placeholder="시" />
-
-        <label for='deadline_min'></label>
-        <input type="number" name="deadline_min" id="deadline_min" min=0 max=59 style="height: 25px; width:60px; text-align: center;" placeholder="분"/>
-        &nbsp;&nbsp;&nbsp;
-        <button type="button" id="deadline_clear" style="width: 60px; height: 20px;">
-            Clear
-        </button>
-    </div>
-    <!-- END custom -->
-
     <?php if ($is_use_captcha) { // USE Captcha  ?>
     <div class="write_div">
         <?php echo $captcha_html ?>
@@ -164,7 +173,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
         // 캘린더
         $(function(){
-            $("#deadline_date").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", minDate: "+0d;"});
+            $("#deadline_date").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99"});
         });
 
         $(document).ready(function() { 

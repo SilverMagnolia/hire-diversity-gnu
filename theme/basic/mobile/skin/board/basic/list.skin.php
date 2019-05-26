@@ -25,6 +25,26 @@ if (count($list) == 0) {
     $no_list = '<li class=\"empty_table\">'.__('No posts found.').'</li>';
 }
 
+// 데드라인 지난 공고와 지나지 않은 공고를 구분하여 재정렬.
+if ($board['activate_deadline']) {
+    $list_passed_deadline = array();
+    $list_left_deadline = array();
+
+    $cur_datetime = new DateTime("now");
+
+    foreach($list as $i => $v) {
+        $dealine = new DateTime($v['deadline']);
+        if ($dealine < $cur_datetime) {
+            array_push($list_passed_deadline, $v);
+        } else {
+            array_push($list_left_deadline, $v);
+        }
+    }
+
+    $list = array_merge($list_left_deadline, $list_passed_deadline);
+}
+// END custom
+
 // add_stylesheet('css file path', Output order); Smaller numbers printed first
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
 ?>
@@ -144,6 +164,43 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                     <span class="sound_only"><?php e__('view') ?></span><span class="bo_view"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo $list[$i]['wr_hit'] ?></span>
                     <span class="sound_only"><?php e__('data') ?></span><span class="bo_date"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $list[$i]['datetime2'] ?></span>
                 	<span class="sound_only"><?php e__('Comment') ?></span><span class="bo_cmt"><i class="fa fa-commenting-o" aria-hidden="true"></i> <?php echo $list[$i]['wr_comment']; ?></span>
+
+                    <!-- 마감일 처리 -->
+                    <?php if ($board['activate_deadline']) { 
+                        $cur_datetime = new DateTime("now"); ?>
+                        <td>
+                            <span style="color: #ddd">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                            <?php if($list[$i]['deadline'] == null) {
+                                if ($list[$i]['is_rolling_base']) {?>
+                                    <!-- rolling base -->
+                                    <span style="white-space: nowrap; color: #2980B9;">Rolling Base</span>
+                                <?php } else { ?>
+                                    <!-- o.e -->
+                                    <span style="white-space: nowrap; color: #2980B9">O.E</span>
+                                <?php } ?>
+                                
+                            <?php } else { 
+                                $datetime = new DateTime($list[$i]['deadline']);
+                                $date = date_create($list[$i]['deadline']);
+                                $reformatted_date = date_format($date, 'Y-m-d');
+
+                                $diff = $datetime->diff($cur_datetime);
+                                $diffDays = (integer)$diff->format( "%R%a" ); ?>
+
+                                <?php if($diffDays == 0 && $cur_datetime < $datetime) { ?>
+                                    <!-- today -->
+                                    <span style="color: #f63e54; white-space: nowrap;">TODAY</span>
+                                <?php } else if ($datetime < $cur_datetime){ ?>
+                                    <!-- overdue -->
+                                    <span style="white-space: nowrap; color: black">OVERDUE</span>
+                                <?php } else { ?>
+                                    <!-- else -->
+                                    <span style="white-space: nowrap; color: #2980B9"><?php echo 'Due Date '.$reformatted_date ?> </span>
+                                <?php } ?>
+                            <?php } ?>
+                        </td>
+                    <?php } ?>
+                    <!-- END custom -->
                 </div>
 
             </li><?php } ?>
