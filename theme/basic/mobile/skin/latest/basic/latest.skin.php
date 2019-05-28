@@ -31,6 +31,7 @@ $cur_datetime = new DateTime("now");
             <?php } ?>
 
             <!-- 마감일 표시 -->
+            <?php if($board['activate_deadline']) { ?>
             <span style="color: #ddd">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
             <?php if ($list[$i]['deadline'] != null) { 
                 // ]today or later
@@ -55,6 +56,7 @@ $cur_datetime = new DateTime("now");
                 <span style="color: #2980B9">Rolling Base</span>
             <?php } else { ?>   
                 <span style="color: #2980B9">O.E</span>
+            <?php } ?>
             <?php } ?>
             <!-- END custom -->
             </a>

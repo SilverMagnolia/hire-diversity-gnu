@@ -30,6 +30,7 @@ $cur_datetime = new DateTime("now");
 				<li class="lt_date"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $list[$i]['datetime2']; ?></li>
 
 				<!-- 마감일 처리 -->
+				<?php if($board['activate_deadline']) { ?>
 				<li><span style="color: #ddd">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span></li>
 				
 	            <?php if ($list[$i]['deadline'] != null) { 
@@ -65,6 +66,8 @@ $cur_datetime = new DateTime("now");
 						<span style="color: #2980B9">O.E</span>
 					</li>
 	            <?php } ?>
+
+		        <?php } ?>
 	            <!-- END custom -->
 			</ul>
         </li>
