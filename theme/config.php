@@ -26,8 +26,11 @@ if (PHP_VERSION >= '5.1.0') {
 보안서버주소가 없다면 공란으로 두시면 되며 보안서버주소 뒤에 / 는 붙이지 않습니다.
 입력예) https://www.domain.com:443/gnuboard5
 */
-define('GML_DOMAIN', 'https://www.hirediversity.kr');
-define('GML_HTTPS_DOMAIN', 'https://www.hirediversity.kr');
+// define('GML_DOMAIN', 'https://www.hirediversity.kr');
+// define('GML_HTTPS_DOMAIN', 'https://www.hirediversity.kr');
+
+define('GML_DOMAIN', 'https://localhost');
+define('GML_HTTPS_DOMAIN', 'https://localhost');
 
 //디버깅 상수, 만약에 사이트를 실사용 중이면 반드시 false 로 설정해 놓고 사용해 주세요.
 define('GML_DEBUG', false);

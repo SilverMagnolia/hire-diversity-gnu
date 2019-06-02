@@ -38,6 +38,9 @@ CREATE TABLE `__TABLE_NAME__` (
   `wr_8` varchar(255) NOT NULL,
   `wr_9` varchar(255) NOT NULL,
   `wr_10` varchar(255) NOT NULL,
+  `deadline` datetime DEFAULT NULL,
+  `is_rolling_base` boolean NOT NULL DEFAULT '0',
+
   PRIMARY KEY (`wr_id`),
   KEY `wr_num_reply_parent` (`wr_num`,`wr_reply`,`wr_parent`),
   KEY `wr_is_comment` (`wr_is_comment`,`wr_id`)
