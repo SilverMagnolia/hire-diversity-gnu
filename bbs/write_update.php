@@ -28,30 +28,35 @@ if($board['bo_use_category']) {
 
 // 마감일 처리
 $deadline_date = $_POST['deadline_date'];
-$deadline_hour = $_POST['deadline_hour'];
-$deadline_min = $_POST['deadline_min'];
-$deadline_sec = "00";
+// $deadline_hour = '$_POST['deadline_hour'];'
+// $deadline_min = $_POST['deadline_min'];
+// $deadline_sec = "00";
 
-$deadline = "";
-
-if ($deadline_date == "") {
+$deadline = '';
+if ($deadline_date == '') {
     $deadline = null;
-
 } else {
-    if ($deadline_hour == "" && $deadline_min == "") {
-        $deadline_hour = "23";
-        $deadline_min = "59";
-        $deadline_sec = "59";
-
-    } else if ($deadline_hour == "") {
-        $deadline_hour = "18";
-    } else if ($deadline_min == "") {
-        $deadline_min = "00";
-    }
-
-    $deadline = $deadline_date." ".$deadline_hour.":".$deadline_min.":".$deadline_sec;
-    $deadline = date('Y-m-d H:i:s', strtotime($deadline));
+    $deadline = $deadline_date." 23:59:59";
 }
+
+// if ($deadline_date == "") {
+//     $deadline = null;
+
+// } else {
+//     if ($deadline_hour == "" && $deadline_min == "") {
+//         $deadline_hour = "23";
+//         $deadline_min = "59";
+//         $deadline_sec = "59";
+
+//     } else if ($deadline_hour == "") {
+//         $deadline_hour = "18";
+//     } else if ($deadline_min == "") {
+//         $deadline_min = "00";
+//     }
+
+//     $deadline = $deadline_date." ".$deadline_hour.":".$deadline_min.":".$deadline_sec;
+//     $deadline = date('Y-m-d H:i:s', strtotime($deadline));
+// }
 
 
 // 롤링 베이스

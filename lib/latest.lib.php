@@ -1,6 +1,7 @@
 <?php
 if (!defined('_GNUBOARD_')) exit;
 include_once(GML_LIB_PATH.'/thumbnail.lib.php');
+date_default_timezone_set("Asia/Seoul");
 
 // 최신글 추출
 // $cache_time 캐시 갱신시간

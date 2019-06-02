@@ -131,7 +131,8 @@
 #bo_v_info . {display:inline-block;background:url('./img/icon_view.png') no-repeat 50% 50%;background-size:80%;height:15px;width:20px;overflow:hidden;text-indent:-999px;vertical-align:middle;margin:0 3px 0 5px}
 #bo_v_info .icon_comment {display:inline-block;background:url('./img/icon_comment.png') no-repeat 50% 50%;background-size:70%;height:15px;width:20px;overflow:hidden;text-indent:-999px;vertical-align:middle;margin:0 3px 0 5px}
 
-#bo_v_option {position:relative;display:inline-block;width:100%;padding:5px 0 15px;border-bottom:1px solid #f1f3f6}
+#bo_v_option {position:relative;display:inline;width:100%;padding:5px 0 15px;border-bottom:1px solid #f1f3f6}
+/*#bo_v_option {position:absolute; bottom: 8; right: 8; width:100%;padding:5px 0 15px;border-bottom:1px solid #f1f3f6}*/
 #bo_v_option .bo_vc_btn {display:inline-block;float:left;height:33px;margin-right:8px;padding:0 10px;line-height:30px;background:#fff;border:1px solid #dedede;font-size:1em}
 
 #bo_v_sns {display:none;position:absolute;top:45px;left:-165%;width:150px;padding:0;border:1px solid #d9dee9;background:#fff;list-style:none}
@@ -155,7 +156,7 @@
 #copy_post {float:left;display:inline-block;width:33px;height:33px;margin-right:5px;padding:0 10px;line-height:30px;color:#444;border:1px solid #dedede;font-size:1.2em}
 
 .bo_v_opt {display:inline-block;float:right;padding:8px 10px;border:none;font-size:1.2em;background:transparent}
-#bo_v_opt {display:none;position:absolute;top:45px;right:0px;width:100px;padding:0;list-style:none;background:#fff;border:1px solid #d9dee9;z-index:2}
+#bo_v_opt {display:none;position:absolute;top:0px;left:0px;width:100px;padding:0;list-style:none;background:#fff;border:1px solid #d9dee9;z-index:2}
 #bo_v_opt:before {content:"";position:absolute;top:-6px;right:5px;width:10px;height:10px;background:url('img/ico_arrow.png') no-repeat}
 #bo_v_opt li {border-bottom:1px solid #f1f1f1;text-align:left}
 #bo_v_opt li:last-child {border-bottom:0}

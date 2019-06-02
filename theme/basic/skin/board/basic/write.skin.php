@@ -96,15 +96,16 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         <label for='deadline_date'></label>
         <input type="text" name="deadline_date" id="deadline_date" value="<?php echo $deadline_date ?>" style="height: 25px; width:100px; text-align: center;" placeholder="select date" readonly/>
 
-        <label for='deadline_hour'></label>
+        <!-- <label for='deadline_hour'></label>
         <input type="number" name="deadline_hour" id="deadline_hour" value="<?php echo $deadline_hour ?>" min=0 max=23 style="height: 25px; width:60px; text-align: center;" placeholder="hour" />
 
         <label for='deadline_min'></label>
-        <input type="number" name="deadline_min" id="deadline_min" value="<?php echo $deadline_min ?>" min=0 max=59 style="height: 25px; width:60px; text-align: center;" placeholder="minute"/>
+        <input type="number" name="deadline_min" id="deadline_min" value="<?php echo $deadline_min ?>" min=0 max=59 style="height: 25px; width:60px; text-align: center;" placeholder="minute"/> -->
+        
         &nbsp;&nbsp;&nbsp;
         <button type="button" id="deadline_clear" style="width: 60px; height: 20px;">
             Clear
-        </button>
+        </button> 
         <div style="height:10px"></div>
     </div>
 
@@ -187,22 +188,22 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             };
 
             // 마감일-시간 입력된 값 유효성 체크(0 ~ 23)
-            document.getElementById('deadline_hour').onkeyup = function(event) {
-                const n = parseInt(this.value);
+            // document.getElementById('deadline_hour').onkeyup = function(event) {
+            //     const n = parseInt(this.value);
 
-                if ((isNaN(n)) || (n > 23) || (n < 0)) {
-                    this.value = '';
-                }
-            }
+            //     if ((isNaN(n)) || (n > 23) || (n < 0)) {
+            //         this.value = '';
+            //     }
+            // }
 
-            // 마감일-분 입력된 값 유효성 체크(0 ~ 59)
-            document.getElementById('deadline_min').onkeyup = function(event) {
-                const n = parseInt(this.value);
+            // // 마감일-분 입력된 값 유효성 체크(0 ~ 59)
+            // document.getElementById('deadline_min').onkeyup = function(event) {
+            //     const n = parseInt(this.value);
 
-                if ((isNaN(n)) || (n > 59) || (n < 0)) {
-                    this.value = '';
-                }
-            }
+            //     if ((isNaN(n)) || (n > 59) || (n < 0)) {
+            //         this.value = '';
+            //     }
+            // }
         });
     </script>
     <!-- END custom -->

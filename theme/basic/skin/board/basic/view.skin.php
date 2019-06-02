@@ -15,86 +15,114 @@ $showOverdueAtTheBottomOfContent = false;
             <?php if ($category_name) { ?>
             <span class="bo_v_cate"><?php echo $view['ca_name']; // Category Output End ?></span>
             <?php } ?>
-
-            <!-- 마감된 공고는 제목 옆에 (overdue) 표시 -->
-            
-            <?php 
-                // 마감일 오늘?
-                // 마감일 지남?
-                // 롤링 베이스?
-                // 마감일 지정됨 && 마감일 지나지 않음 && 마감일 오늘 아님
-
-                $subject = $show_wr_subject;
-
-                $cur_datetime = new DateTime("now");
-                $deadline = $view['deadline'];
-                $deadline_datetime = new DateTime($deadline);
-
-                $diff = $deadline_datetime->diff($cur_datetime);
-                $diffDays = (integer)$diff->format( "%R%a" );
-
-                if ($deadline != null) {    
-                    if ($deadline_datetime <= $cur_datetime) { 
-                        $showOverdueAtTheBottomOfContent = true;
-                        ?>
-                        <!-- overdue -->
-                        <span class="bo_v_tit"><?php echo $subject; ?> / <span style="color: black; font-weight: bold"> OVERDUE </span></span>
-
-                    <?php } else if ($diffDays == 0 && $cur_datetime < $deadline_datetime) { ?>
-                        <!-- 마감일 오늘이고 아직 지나지 않음. -->
-                        <span class="bo_v_tit"><?php echo $subject; ?> / <span style="color: #f63e54; font-weight: bold"> TODAY </span></span>
-
-                    <?php } else { 
-                        $date = date_create($deadline);
-                        $reformatted_date = date_format($date, 'Y-m-d H:i:s'); ?>
-                        <!-- 마감일 오늘 이후. -->
-                        <span class="bo_v_tit"><?php echo $subject; ?> / <span style="color: #2980B9; font-weight: bold"> <?php echo $reformatted_date ?> </span></span>
-                    <?php } ?>
-            <?php } else { ?>
-                    <!-- 마감일 없음 -->
-                    <span class="bo_v_tit"><?php echo $subject; ?> / <span style="color: #2980B9; font-weight: bold"><?php echo $view['is_rolling_base'] ? 'Rolling Base' : 'Occasion Employment' ?></span></span>
-            <?php } ?>
-
-            <!-- END custom -->
-
+            <span class="bo_v_tit"><?php echo $show_wr_subject;; ?></span>
         </h2>
     </header>
-    <section id="bo_v_info">
-        <h2><?php e__('Page Info'); ?></h2>
-        <div class="bo_v_info_l">
-        	<span class="sound_only"><?php e__('Writer'); ?></span> <strong><?php echo $view['name'] ?><?php echo $show_ip_view; ?></strong>
-        	<span class="sound_only"><?php e__('Hit'); ?></span><strong><i class="fa fa-eye" aria-hidden="true"></i> <?php echo sprintf(n__('%s Hit', '%s Hits', $show_hit_number), $show_hit_number); ?></strong>
-        	<span class="if_date"><span class="sound_only"><?php e__('Date'); ?></span><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $show_wr_datetime; ?></span>
 
-            <!-- 등록일 옆에 마감일 표시. 없으면 rolling base. -->
-            
-            <!-- <?php if ($deadline == null) { ?>
-                <span class="if_date">&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;rolling base</span>
-            <?php } else {  
-                $date = date_create($deadline);
-                $reformatted_date = date_format($date, 'Y-m-d H:i:s'); ?>
-                <span class="if_date"><?php  echo '| due date: '.$reformatted_date ?></span>
-            <?php } ?> -->
-            <!-- END custom -->
-		</div>
-		<div class="bo_v_info_r">
-			<a href="#bo_vc" class="bo_vc_btn"><span class="sound_only"><?php e__('Comment'); ?></span><i class="fa fa-commenting-o" aria-hidden="true"></i> <?php echo sprintf(n__('%s Comment', '%s Comments', $show_cmt_number), $show_cmt_number); ?></a>
-			<button class="btn_b03 btn_share" id="copy_post"><i class="fa fa-clipboard" aria-hidden="true"></i><span class="sound_only"><?php e__('Copy Post'); ?></span></button>
-			<div id="bo_v_share">
-				<?php include_once(GML_SNS_PATH."/view.sns.skin.php"); ?>
-		        <?php if ($scrap_href) { ?><a href="<?php echo $scrap_href;  ?>" target="_blank" class="btn_b03 btn_scrap" onclick="win_scrap(this.href); return false;"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="sound_only"><?php e__('Scrap'); ?></span></a><?php } ?>
-		    </div>
+    <section id="bo_v_info">
+        <!-- 마감일 생성 -->
+        <?php 
+            $cur_datetime = new DateTime("now");
+            $deadline = $view['deadline'];
+            $deadline_datetime = new DateTime($deadline);
+
+            $diff = $deadline_datetime->diff($cur_datetime);
+            $diffDays = (integer)$diff->format( "%R%a" );
+
+            $date = date_create($deadline);
+            $reformatted_date = date_format($date, 'Y-m-d');
+            $is_rolling_base = $view['is_rolling_base']; 
+        ?>
+
+        <!-- 작성자, 생성일, 마감일, 조회수 -->
+        <style>
+            table, tbody, tr, th, td { 
+                font-family: "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
+            } 
+            th {
+                font-size: 13px; 
+                color: #999;   
+                font-weight: normal;
+                height: 30px;
+            }
+            td {
+                color: black;
+                font-size: 13px;
+            }
+            table {
+                display: inline;
+            }
+        </style>
+        <table>
+            <colgroup>
+                <col style="width: 110px;">
+                <col style="width: 400px;">    
+            </colgroup>
+            <tbody> 
+                <tr align="left">
+                    <th>Writer</th>
+                    <td><?php echo $view['name'] ?></td>
+                </tr>
+                <tr align="left">
+                    <th>Hits</th>
+                    <td>
+                        <?php echo $show_hit_number; ?>
+                    </td>
+                </tr>
+                <tr align="left">
+                    <th>Created Date</th>
+                    <td><?php echo $show_wr_datetime; ?></td>
+                </tr>
+                <tr align="left">
+                    <th>Due Date</th>
+                    <td>
+                    <?php if ($deadline != null) {    
+
+                            if ($deadline_datetime <= $cur_datetime) { 
+                                $showOverdueAtTheBottomOfContent = true; ?>
+                                <!-- overdue -->
+                                <strike>
+                                    <?php echo $reformatted_date; ?>
+                                    <?php echo $is_rolling_base ? ' | Rolling Base' : '' ?>
+                                </strike>
+                                <span style="color: red">&nbsp;&nbsp;OVERDUE</span>
+                            
+
+                            <?php } else if ($diffDays == 0 && $cur_datetime < $deadline_datetime) { ?>
+                                <!-- 마감일 오늘이고 아직 지나지 않음. -->
+                                <?php echo $reformatted_date ?>
+                                <? echo $is_rolling_base ? ' | Rolling Base' : ''?>
+                    
+                            <?php } else { ?>
+                                <!-- 마감일 오늘 이후. -->
+                                <?php echo $reformatted_date ?>
+                                <?php echo $is_rolling_base ? ' | Rolling Base' : '' ?>
+
+                            <?php } ?>
+
+                    <?php } else { ?>
+                            <!-- 마감일 없음 -->
+                            <?php echo $is_rolling_base ? 'Rolling Base' : 'Occasion Employment'; ?>
+                    <?php } ?>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="bo_v_info_r">
             <?php if($update_href || $delete_href || $copy_href || $move_href || $search_href) { ?>
-		    <button class="bo_v_opt"><span class="sound_only"><?php e__('Write Option Button'); ?></span><i class="fa fa-ellipsis-v"></i></button>
-			<ul id="bo_v_opt">
-	            <?php if ($update_href) { ?><li><a href="<?php echo $update_href ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <?php e__('Edit'); ?></a></li><?php } ?>
-	            <?php if ($delete_href) { ?><li><a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;"><i class="fa fa-trash-o" aria-hidden="true"></i> <?php e__('Delete'); ?></a></li><?php } ?>
-	            <?php if ($copy_href) { ?><li><a href="<?php echo $copy_href ?>" onclick="board_move(this.href); return false;"><i class="fa fa-files-o" aria-hidden="true"></i> <?php e__('Copy'); ?></a></li><?php } ?>
-	            <?php if ($move_href) { ?><li><a href="<?php echo $move_href ?>" onclick="board_move(this.href); return false;"><i class="fa fa-arrows" aria-hidden="true"></i> <?php e__('Move'); ?></a></li><?php } ?>
-	            <?php if ($search_href) { ?><li><a href="<?php echo $search_href ?>"><i class="fa fa-search" aria-hidden="true"></i> <?php e__('Search'); ?></a></li><?php } ?>
-	        </ul>
+            <button class="bo_v_opt"><span class="sound_only"><?php e__('Write Option Button'); ?></span><i class="fa fa-ellipsis-v"></i></button>
+            <ul id="bo_v_opt">
+                <?php if ($update_href) { ?><li><a href="<?php echo $update_href ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <?php e__('Edit'); ?></a></li><?php } ?>
+                <?php if ($delete_href) { ?><li><a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;"><i class="fa fa-trash-o" aria-hidden="true"></i> <?php e__('Delete'); ?></a></li><?php } ?>
+                <?php if ($copy_href) { ?><li><a href="<?php echo $copy_href ?>" onclick="board_move(this.href); return false;"><i class="fa fa-files-o" aria-hidden="true"></i> <?php e__('Copy'); ?></a></li><?php } ?>
+                <?php if ($move_href) { ?><li><a href="<?php echo $move_href ?>" onclick="board_move(this.href); return false;"><i class="fa fa-arrows" aria-hidden="true"></i> <?php e__('Move'); ?></a></li><?php } ?>
+                <?php if ($search_href) { ?><li><a href="<?php echo $search_href ?>"><i class="fa fa-search" aria-hidden="true"></i> <?php e__('Search'); ?></a></li><?php } ?>
+            </ul>
             <?php } ?>
-		</div>
+        </div>
+        <!-- END custom -->
+
     </section>
 
     <section id="bo_v_atc">
@@ -121,8 +149,6 @@ $showOverdueAtTheBottomOfContent = false;
         <?php if ($is_signature) { ?>
             <p><?php echo $signature ?></p>
         <?php } ?>
-
-        
 
         <!--  Start of good or bad { -->
         <?php if ( $good_href || $nogood_href) { ?>
