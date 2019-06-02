@@ -73,6 +73,9 @@ $showOverdueAtTheBottomOfContent = false;
                     <th>Created Date</th>
                     <td><?php echo $show_wr_datetime; ?></td>
                 </tr>
+
+                <?php if ($board['activate_deadline']) { ?>
+
                 <tr align="left">
                     <th>Due Date</th>
                     <td>
@@ -106,6 +109,8 @@ $showOverdueAtTheBottomOfContent = false;
                     <?php } ?>
                     </td>
                 </tr>
+                <?php } ?>
+                
             </tbody>
         </table>
 
