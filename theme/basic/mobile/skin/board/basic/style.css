@@ -97,7 +97,7 @@
 .bo_notice td a {font-weight:bold}
 .td_num strong {color:#000}
 .bo_cate_link {display:inline-block;height:22px;padding:0 5px;line-height:20px;border:1px solid #0fb192;background:#22cbab;color:#fff;font-weight:normal;text-decoration:none;font-size:0.85em} /* 글제목줄 분류스타일 */
-.bo_subject {display:block;margin:5px 0;font-size:1.083em;font-weight:bold;text-overflow:ellipsis;overflow:hidden;white-space:initial;}
+.bo_subject {display:block;margin:5px 0;font-size:1.083em;font-weight:bold;white-space:normal;}
 .bo_subject img {margin-right:5px}
 .bo_subject i {color:#8d96c2;font-size:12px}
 .bo_subject .fa-heart {color:#ff0000}
